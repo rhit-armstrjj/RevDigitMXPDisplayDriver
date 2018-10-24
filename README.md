@@ -7,6 +7,6 @@ The link to the docs can be found [here](https://lainkai.github.io/RevDigitMXPDi
 # How to use
 This has dependencies. If you want to have a good time, I suggest you use gradle.
 
-The main controlling class in `RevDigitDisplay`. It is the only display I have made drivers for.
+The main controlling class is `RevDigitDisplay`. It is the only display I have made drivers for.
 Use the `getInstance()` method, becuase its constructor is private. It's called a singleton. All info
 can be found in the documentation.
