@@ -7,10 +7,17 @@ import static org.junit.Assert.*;
 public class FactoryTest {
 
     @Test
-    public void testDChar() {
+    public void testGetDCharEncapsulated() {
 
         DChar ch = DCharFactory.getDChar('A', false);
-        assertEquals("The DChar should encapsulate A", ch.getEncapsulatedChar(), 'A');
+        assertEquals("Should return 'A'", ch.getEncapsulatedChar(), 'A');
+
+    }
+    @Test
+    public void testGetDChars() {
+
+        DChar[] ch = DCharFactory.getDChars("a");
+        assertEquals("Should return 'A'", ch[0].getEncapsulatedChar(), 'A');
 
     }
 

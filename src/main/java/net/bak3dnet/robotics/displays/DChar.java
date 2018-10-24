@@ -46,6 +46,8 @@ public class DChar {
             
         }
 
+        this.encapsulatedChar = encapsulatedChar;
+
     }
     
     /**
