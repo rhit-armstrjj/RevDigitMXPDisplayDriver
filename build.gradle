@@ -43,15 +43,35 @@ allprojects {
 
 }
 
+group = 'net.bak3dnet.robotics'
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+
+    classifier = 'sources'
+    from sourceSets.main.allSource
+
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
 publishing {
 
     publications {
 
-        MyPublication(MavenPublication) {
+        gradleJava(MavenPublication) {
 
             from components.java
-            groupId 'net.bak3dnet.robotics.displays'
-            artifactId ''
+            artifact sourcesJar
+            artifact javadocJar
 
         }
 
@@ -59,20 +79,31 @@ publishing {
 
 }
 
-
 bintray {
 
-    user = "bak3dchips"
+    user = 'bak3dchips'
     key = System.getenv('BINTRAY_KEY')
 
-    publications
+    publish  = true
+
+    publications = ['gradleJava']
 
     pkg {
 
-        repo = 'FIRST-Segmented-Display-Drivers'
-        name = 'Rev-Digit-MXP-Display-Drivers'
-        //userOrg = 'Team3487'
+        repo = 'robotics'
+        name = 'digital-display'
+        userOrg = 'bak3dnet'
+        licenses = ['GPL-3.0']
+        vcsUrl = 'https://github.com/Lainkai/RevDigitMXPDisplayDriver.git'
 
+        version {
+
+            name = '1.0-dev'
+            desc = 'Drivers in Development'
+            released = new Date()
+            vcsTag = '1.0.0'
+
+        }
 
     }
 
