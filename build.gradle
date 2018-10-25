@@ -72,6 +72,8 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
+            artifactId 'Display-Drivers'
+            version '1.0'
 
         }
 
