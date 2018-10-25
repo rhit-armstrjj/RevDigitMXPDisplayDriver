@@ -48,19 +48,20 @@ group = 'net.bak3dnet.robotics'
 task sourcesJar(type: Jar, dependsOn: classes) {
 
     classifier = 'sources'
-    from sourceSets.main.allSource
+    from sourceSets.main.allJava
 
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
 
     classifier = 'javadoc'
-    from javadoc.destinationDir
+    from javadoc
 
 }
 
 artifacts {
-    archives sourcesJar, javadocJar
+    archives sourcesJar
+    archives javadocJar
 }
 
 publishing {
@@ -72,8 +73,6 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            artifactId 'Display-Drivers'
-            version '1.0'
 
         }
 
