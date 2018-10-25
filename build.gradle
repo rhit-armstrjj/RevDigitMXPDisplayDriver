@@ -52,7 +52,7 @@ bintray {
 
     publish  = true
 
-    configurations = ['archives']
+    configurations = ['javadoc','jar']
 
     pkg {
 
