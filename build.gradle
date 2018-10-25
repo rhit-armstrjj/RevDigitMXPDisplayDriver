@@ -80,6 +80,19 @@ publishing {
 
 }
 
+javadoc {
+  source = sourceSets.main.allJava
+  classpath = configurations.compileClasspath
+
+  options
+  {
+    setMemberLevel JavadocMemberLevel.PUBLIC
+    setAuthor true
+
+    links "https://docs.oracle.com/javase/8/docs/api/"
+  }
+}
+
 bintray {
 
     user = 'bak3dchips'
