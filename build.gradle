@@ -116,6 +116,7 @@ bintray {
                     root.appendNode('description','desc')
                     root.appendNode('name', 'display-drivers')
                     root.children().last() + pomConfig
+
                 }
 
             }
@@ -134,7 +135,7 @@ bintray {
 
         version {
 
-            name = '1.0-dev'
+            name = '1.0'
             desc = 'Drivers in Development'
             released = new Date()
             vcsTag = '1.0'
