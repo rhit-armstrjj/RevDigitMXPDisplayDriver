@@ -16,7 +16,7 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
-version = '1.0.0'
+version = '1.0'
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
@@ -43,7 +43,7 @@ allprojects {
 
 }
 
-group = 'net.bak3dnet.robotics'
+group = 'net.bak3dnet.robotics.display'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
 
@@ -136,7 +136,7 @@ bintray {
             name = '1.0-dev'
             desc = 'Drivers in Development'
             released = new Date()
-            vcsTag = '1.0.0'
+            vcsTag = '1.0'
 
         }
 
