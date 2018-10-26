@@ -13,7 +13,7 @@ plugins {
 
     id "edu.wpi.first.GradleRIO" version "2019.0.0-alpha-3"
 
-    id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.8"
 }
 
 version = '1.0'
