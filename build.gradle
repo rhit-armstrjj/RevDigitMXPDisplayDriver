@@ -45,6 +45,20 @@ allprojects {
 
 group = 'net.bak3dnet.robotics'
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+
+    classifier = 'sources'
+    from sourceSets.main.allSource
+
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+
+}
+
 bintray {
 
     user = 'bak3dchips'
@@ -63,21 +77,21 @@ bintray {
                 distribution "repo"
 
             }
+        }
 
-            developers {
+        developers {
+               
+            developer {
                 
-                developer {
+                id "bak3dchips"
+                name "Jacob Armstrong"
+                email "jacob.js.armstrong@gmail.com"
                 
-                    id "bak3dchips"
-                    name "Jacob Armstrong"
-                    email "jacob.js.armstrong@gmail.com"
-                
-                }
             }
+        }
     
-    scm {
-       url "https://github.com/Lainkai/RevDigitMXPDisplayDriver"
-    }
+        scm {
+            url "https://github.com/Lainkai/RevDigitMXPDisplayDriver"
         }
 
     }
