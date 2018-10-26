@@ -74,9 +74,9 @@ bintray {
 
             license {
 
-                name "GNU General Public License, Version 3"
-                url "https://www.gnu.org/licenses/gpl-3.0.en.html"
-                distribution "repo"
+                name = "GNU General Public License, Version 3"
+                url = "https://www.gnu.org/licenses/gpl-3.0.en.html"
+                distribution = "repo"
 
             }
         }
@@ -85,9 +85,9 @@ bintray {
                
             developer {
                 
-                id "bak3dchips"
-                name "Jacob Armstrong"
-                email "jacob.js.armstrong@gmail.com"
+                id = "bak3dchips"
+                name = "Jacob Armstrong"
+                email = "jacob.js.armstrong@gmail.com"
                 
             }
         }
@@ -107,9 +107,9 @@ bintray {
                 from components.java
                 artifact sourcesJar
                 artifact javadocJar
-                groupId 'net.bak3dnet.robotics'
-                artifactId 'display-drivers'
-                version '1.0'
+                groupId = 'net.bak3dnet.robotics'
+                artifactId = 'display-drivers'
+                version = '1.0'
                 pom.withXml {
 
                     def root = asNode()
