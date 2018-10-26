@@ -40,6 +40,7 @@ allprojects {
 
     apply plugin: 'maven'
     apply plugin: 'maven-publish'
+    apply plugin: 'java'
 
 }
 
