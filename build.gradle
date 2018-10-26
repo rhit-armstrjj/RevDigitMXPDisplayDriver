@@ -114,8 +114,7 @@ bintray {
 
                     def root = asNode()
                     root.appendNode('description','desc')
-                    root.appendNode()
-                    root.appendNode()
+                    root.appendNode('name', 'display-drivers')
                     root.children().last() + pomConfig
                 }
 
