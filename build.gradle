@@ -13,117 +13,47 @@ plugins {
 
     id "edu.wpi.first.GradleRIO" version "2019.0.0-alpha-3"
 
-    id "com.jfrog.bintray" version "1.8"
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'maven'
+    id 'maven-publish'
 }
 
 version = '1.0'
+group = 'robotics'
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
     api wpilib()
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    //implementation 'com.google.guava:guava:23.0'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
 
-allprojects {
-    // In this section you declare where to find the dependencies of your project
-    repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-        jcenter()
-    }
-
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-
+ // In this section you declare where to find the dependencies of your project
+repositories {
+// Use jcenter for resolving your dependencies.
+// You can declare any Maven/Ivy/file repository here.
+    jcenter()
 }
 
-group = 'net.bak3dnet.robotics.display'
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-
-    classifier = 'sources'
-    from sourceSets.main.allSource
-
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task javadocJar(type: Jar, dependsOn:javadoc) {
 
     classifier = 'javadoc'
     from javadoc.destinationDir
 
 }
 
+artifacts {
+    archives javadocJar
+}
+
 bintray {
 
     user = 'bak3dchips'
+
     key = System.getenv('BINTRAY_KEY')
 
-    publish  = true
-
-    publications = ['UploadPub']
-
-    def pomConfig = {
-
-        licenses {
-
-            license {
-
-                name = "GNU General Public License, Version 3"
-                url = "https://www.gnu.org/licenses/gpl-3.0.en.html"
-                distribution = "repo"
-
-            }
-        }
-
-        developers {
-               
-            developer {
-                
-                id = "bak3dchips"
-                name = "Jacob Armstrong"
-                email = "jacob.js.armstrong@gmail.com"
-                
-            }
-        }
-    
-        scm {
-            url "https://github.com/Lainkai/RevDigitMXPDisplayDriver"
-        }
-
-    }
-
-    publishing {
-
-        publications {
-
-            UploadPub(MavenPublication) {
-
-                from components.java
-                artifact sourcesJar
-                artifact javadocJar
-                groupId = 'net.bak3dnet.robotics'
-                artifactId = 'display-drivers'
-                version = '1.0'
-                pom.withXml {
-
-                    def root = asNode()
-                    root.appendNode('description','desc')
-                    root.appendNode('name', 'display-drivers')
-                    root.children().last() + pomConfig
-
-                }
-
-            }
-
-        }
-
-    }
+    configurations = ['archives']
 
     pkg {
 
@@ -132,16 +62,22 @@ bintray {
         userOrg = 'bak3dnet'
         licenses = ['GPL-3.0']
         vcsUrl = 'https://github.com/Lainkai/RevDigitMXPDisplayDriver.git'
+        publicDownloadNumbers = true
 
         version {
 
-            name = '1.0'
-            desc = 'Drivers in Development'
-            released = new Date()
-            vcsTag = '1.0'
+            name = '1.0-dev'
+            desc = 'Developmental version for the display drivers'
+            vcsTag = '1.0.0'
 
         }
 
     }
 
 }
+
+
+
+
+
+
