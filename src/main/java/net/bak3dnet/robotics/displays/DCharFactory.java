@@ -196,6 +196,18 @@ public class DCharFactory {
     }
 
     /**
+     * Gets a DChar for a character, without a decimal.
+     * 
+     * @param preChar The char to be encapsulated
+     * @return Returns a signle DChar with the encapsulated preChar, no decimal.
+     */
+    public static DChar getDChar(char preChar) {
+
+        return getDChar(preChar,false);
+
+    }
+
+    /**
      * Gets a DChar for one specific character.
      * 
      * @param preChar The char to be encapsulated.

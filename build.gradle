@@ -18,7 +18,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '1.0'
+version = '1.0.1'
 group = 'robotics'
 
 dependencies {
@@ -68,7 +68,7 @@ bintray {
 
             name = '1.0-dev'
             desc = 'Developmental version for the display drivers'
-            vcsTag = '1.0.0'
+            vcsTag = '1.0.1'
 
         }
 
