@@ -175,7 +175,7 @@ public class RevDigitDisplay {
         buttonA = new DigitalInput(19);
         buttonB = new DigitalInput(20);
 
-        potentiometer = new AnalogPotentiometer(78);
+        potentiometer = new AnalogPotentiometer(8);
 
         i2c = new I2C(Port.kMXP,0x70);
         
