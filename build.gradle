@@ -68,7 +68,7 @@ bintray {
 
             name = '1.0-dev'
             desc = 'Developmental version for the display drivers'
-            vcsTag = '1.0.1'
+            vcsTag = '1.0.2'
 
         }
 
