@@ -3,7 +3,15 @@ package net.bak3dnet.robotics.displays;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C.Port;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.bak3dnet.robotics.displays.modules.DisplayModuleBase;
 import net.bak3dnet.robotics.displays.modules.TickerTapeModule;
@@ -28,6 +36,8 @@ public class RevDigitDisplay {
      * Constants!
      * 
      */
+
+    private static final Logger logger = LogManager.getLogger(RevDigitDisplay.class);
 
      /**
       * Sets the display to active.
@@ -71,7 +81,7 @@ public class RevDigitDisplay {
 
         public void run() {
             long previousTime = System.currentTimeMillis();
-            while(!Thread.interrupted()){
+            while(true){
 
                 long currentTime = System.currentTimeMillis();
 
@@ -82,7 +92,8 @@ public class RevDigitDisplay {
                 previousTime = currentTime;
 
                 try {
-					Thread.sleep(1);
+                    Thread.sleep(1);
+                    logger.debug("Loop Completed");
 				} catch (InterruptedException e) {
                     break;
                 }
@@ -98,8 +109,10 @@ public class RevDigitDisplay {
      */
     private static void singletonCheck() {
 
+        logger.debug("Checking for Singleton");
         if(singleton == null) {
             singleton = new RevDigitDisplay();
+            logger.debug("Singleton Created");
         }
 
     }
@@ -109,6 +122,7 @@ public class RevDigitDisplay {
      */
     public static RevDigitDisplay getInstance() {
 
+        logger.debug("Getting an instance");
         singletonCheck();
         return singleton;
 
@@ -122,6 +136,7 @@ public class RevDigitDisplay {
      */
     public static RevDigitDisplay getInstance(String setToString) {
 
+        logger.debug("Getting Instance");
         singletonCheck();
 
         TickerTapeModule module = new TickerTapeModule();
@@ -175,15 +190,21 @@ public class RevDigitDisplay {
         buttonA = new DigitalInput(19);
         buttonB = new DigitalInput(20);
 
-        potentiometer = new AnalogPotentiometer(8);
+        potentiometer = new AnalogPotentiometer(4);
 
         i2c = new I2C(Port.kMXP,0x70);
         
         i2c.writeBulk(OSCILATOR_ON);
+        
+        Timer.delay(0.01);
 
         i2c.writeBulk(DEFAULT_BRIGHTNESS);
 
+        Timer.delay(0.01);
+
         i2c.writeBulk(DEFAULT_BLINKING);
+        
+        Timer.delay(0.01);
 
         taskManager = new DisplayTaskManager(this);
 
@@ -196,17 +217,21 @@ public class RevDigitDisplay {
      */
     public void setActiveModule(DisplayModuleBase module) {
 
+        logger.debug("Setting active module to {}", module.getClass());
+
         if(this.taskCoordinator != null) {
             
+            logger.debug("Interrupting taskCoordinator");
             this.taskCoordinator.interrupt();
         
         }
         
+        logger.debug("Setting active module");
         this.activeModule = module;
+        logger.debug("Creating new thread");
         this.taskCoordinator = new Thread(taskManager);
+        logger.info("Starting new thread");
         this.taskCoordinator.start();
-
-
 
     }
 
@@ -217,6 +242,7 @@ public class RevDigitDisplay {
      */
     public DisplayModuleBase getActiveModule() {
 
+        logger.debug("Returning active module");
         return this.activeModule;
 
     }
@@ -229,26 +255,59 @@ public class RevDigitDisplay {
      * 
      */
     public void setText(DChar[] text) {
+        logger.debug("Setting text");
 
         DChar[] truncated = new DChar[4];
+        Arrays.fill(truncated,DCharFactory.getDChar(' '));
 
         if(text.length>4) {
 
             for(int i =0; i <4;i++) {
 
+                logger.debug("Setting index {} to {}", Integer.toString(i),Character.toString(text[i].getEncapsulatedChar()));
                 truncated[i] = text[i];
 
             }
 
         } else {
 
-            truncated = text;
+            logger.debug("Setting text to output");
+            for(int i = 0; i <4; i++) {
+
+                if(4-i <= text.length) {
+
+                    truncated[i] = text[i];
+
+                }
+
+            }
 
         }
 
-        byte[] preSend =  {(byte)0b00001111,(byte)0b00001111}; 
+        //byte[] preSend =  {(byte)0b00001111,(byte)0b00001111}; 
 
-        i2c.writeBulk(preSend);
+        List<Byte> sendData = new ArrayList<Byte>();
+
+        sendData.add(new Byte((byte)0b00001111));
+        sendData.add(new Byte((byte)0b00001111));
+
+        for(int i = 0; i < truncated.length; i ++) {
+
+            sendData.add(new Byte(truncated[i].getBinary()[0]));
+            sendData.add(new Byte(truncated[i].getBinary()[1]));
+
+        }
+
+        byte[] finalData = new byte[sendData.size()];
+        
+        for(int i = 0; i < sendData.size(); i++) {
+            
+            finalData[i] = sendData.get(i);
+
+        }
+
+        i2c.writeBulk(finalData);
+        Timer.delay(0.01);
 
     }
 

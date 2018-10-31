@@ -131,6 +131,9 @@ public class DCharFactory {
 
         byte[] charSpace = {(byte) 0b00000000,(byte)0b00000000};
         aMap.put(' ', charSpace);
+
+        byte[] fullDisplay = {(byte)0b11111111, (byte)0b11111111};
+        aMap.put('&', fullDisplay);
         
         characterRegistry = Collections.unmodifiableMap(aMap);
 
