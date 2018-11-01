@@ -3,8 +3,9 @@ package net.bak3dnet.robotics.displays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author Jake Armstrong
@@ -146,23 +147,11 @@ public class DCharFactory {
      * 
      */
     public static DChar[] getDChars(String beforeString) {
-        //Regex stuff
-        Pattern periods = Pattern.compile("[^1-z]");
-        Matcher matcher = periods.matcher(beforeString);
-
-        int periodCount = 0;
-
-        //Counts all the periods in the string
-        while(matcher.find()) {
-
-            periodCount++;
-
-        }
 
         String capslock = beforeString.toUpperCase();
 
         //Makes an array of all the DChars without the inlcuded periods.
-        DChar[] convertedString = new DChar[beforeString.length()-periodCount];
+        List<DChar> convertedString = new ArrayList<DChar>();
         
         for(int i = 0; i < beforeString.length(); i++) {
 
@@ -177,24 +166,31 @@ public class DCharFactory {
                 */
                 if(beforeString.charAt(i+1) == '.') {
 
-                    convertedString[i] = new DChar(preChar, true, getBinaryMatrix(preChar));
+                    convertedString.add(new DChar(preChar, true, getBinaryMatrix(preChar)));
                     i++;
 
                 } else {
 
-                    convertedString[i] = new DChar(preChar, false, getBinaryMatrix(preChar));
+                    convertedString.add(new DChar(preChar, false, getBinaryMatrix(preChar)));
 
                 }
             }  catch(StringIndexOutOfBoundsException e) {
 
-                convertedString[i] = new DChar(preChar, false, getBinaryMatrix(preChar));
+                convertedString.add(new DChar(preChar, false, getBinaryMatrix(preChar)));
 
             }
         
         }
 
         //Returns the converted String
-        return convertedString;
+        DChar[] outArray = new DChar[convertedString.size()];
+        for(int i = 0; i <convertedString.size();i++) {
+
+            outArray[i] = convertedString.get(i);
+
+        }
+
+        return outArray;
 
     }
 

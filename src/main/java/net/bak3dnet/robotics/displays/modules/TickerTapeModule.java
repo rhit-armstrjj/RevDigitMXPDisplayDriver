@@ -22,7 +22,7 @@ public class TickerTapeModule implements DisplayModuleBase {
     protected double charPassRate;
 
     protected int sumDeltaTime;
-    protected int currentPosition;
+    protected int currentPosition = 0;
     protected int roundsCompleted;
     protected int spacing;
     protected DChar[] displayBuffer;
@@ -402,15 +402,13 @@ public class TickerTapeModule implements DisplayModuleBase {
         outDString[2] = outDString[3];
 
         try {
-
+            
             outDString[3] = displayBuffer[currentPosition];
 
         } catch(IndexOutOfBoundsException e) {
-
-            outDString[3] = displayBuffer[currentPosition];
             currentPosition = 0;
+            outDString[3] = displayBuffer[currentPosition];
             roundsCompleted++;
-
         }
 
         currentPosition++;
