@@ -1,7 +1,7 @@
 package net.bak3dnet.robotics.displays.modules;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import net.bak3dnet.robotics.displays.modules.DisplayModuleBase;
 import net.bak3dnet.robotics.displays.RevDigitDisplay;
@@ -14,7 +14,7 @@ public class TickerTapeModule implements DisplayModuleBase {
 
     protected String displayText;
 
-    private static final Logger logger = LogManager.getLogger(TickerTapeModule.class);
+    //private static final Logger logger = LogManager.getLogger(TickerTapeModule.class);
 
     /**
      * Characters per minute
@@ -29,7 +29,7 @@ public class TickerTapeModule implements DisplayModuleBase {
     protected DChar[] outDString;
 
     public TickerTapeModule() {
-        logger.debug("Creating new Ticker Tape Module");
+        //logger.debug("Creating new Ticker Tape Module");
 
         outDString = new DChar[4];
 
@@ -79,7 +79,7 @@ public class TickerTapeModule implements DisplayModuleBase {
 
         }
 
-        logger.debug("Setting display text to {}", object.toString());
+        //logger.debug("Setting display text to {}", object.toString());
 
     }
 

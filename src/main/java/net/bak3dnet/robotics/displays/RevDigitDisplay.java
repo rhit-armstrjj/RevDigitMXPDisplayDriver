@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C.Port;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class RevDigitDisplay {
      * 
      */
 
-    private static final Logger logger = LogManager.getLogger(RevDigitDisplay.class);
+    //private static final Logger logger = LogManager.getLogger(RevDigitDisplay.class);
 
      /**
       * Sets the display to active.
@@ -93,7 +93,7 @@ public class RevDigitDisplay {
 
                 try {
                     Thread.sleep(1);
-                    logger.debug("Loop Completed");
+                    //logger.debug("Loop Completed");
 				} catch (InterruptedException e) {
                     break;
                 }
@@ -109,10 +109,10 @@ public class RevDigitDisplay {
      */
     private static void singletonCheck() {
 
-        logger.debug("Checking for Singleton");
+        //logger.debug("Checking for Singleton");
         if(singleton == null) {
             singleton = new RevDigitDisplay();
-            logger.debug("Singleton Created");
+            //logger.debug("Singleton Created");
         }
 
     }
@@ -122,7 +122,7 @@ public class RevDigitDisplay {
      */
     public static RevDigitDisplay getInstance() {
 
-        logger.debug("Getting an instance");
+        //logger.debug("Getting an instance");
         singletonCheck();
         return singleton;
 
@@ -136,7 +136,7 @@ public class RevDigitDisplay {
      */
     public static RevDigitDisplay getInstance(String setToString) {
 
-        logger.debug("Getting Instance");
+        //logger.debug("Getting Instance");
         singletonCheck();
 
         TickerTapeModule module = new TickerTapeModule();
@@ -217,20 +217,20 @@ public class RevDigitDisplay {
      */
     public void setActiveModule(DisplayModuleBase module) {
 
-        logger.debug("Setting active module to {}", module.getClass());
+        //logger.debug("Setting active module to {}", module.getClass());
 
         if(this.taskCoordinator != null) {
             
-            logger.debug("Interrupting taskCoordinator");
+            //logger.debug("Interrupting taskCoordinator");
             this.taskCoordinator.interrupt();
         
         }
         
-        logger.debug("Setting active module");
+        //logger.debug("Setting active module");
         this.activeModule = module;
-        logger.debug("Creating new thread");
+        //logger.debug("Creating new thread");
         this.taskCoordinator = new Thread(taskManager);
-        logger.info("Starting new thread");
+        //logger.info("Starting new thread");
         this.taskCoordinator.start();
 
     }
@@ -242,7 +242,7 @@ public class RevDigitDisplay {
      */
     public DisplayModuleBase getActiveModule() {
 
-        logger.debug("Returning active module");
+        //logger.debug("Returning active module");
         return this.activeModule;
 
     }
@@ -255,7 +255,7 @@ public class RevDigitDisplay {
      * 
      */
     public void setText(DChar[] text) {
-        logger.debug("Setting text");
+        //logger.debug("Setting text");
 
         DChar[] truncated = new DChar[4];
         Arrays.fill(truncated,DCharFactory.getDChar(' '));
@@ -264,14 +264,14 @@ public class RevDigitDisplay {
 
             for(int i =0; i <4;i++) {
 
-                logger.debug("Setting index {} to {}", Integer.toString(i),Character.toString(text[i].getEncapsulatedChar()));
+                //logger.debug("Setting index {} to {}", Integer.toString(i),Character.toString(text[i].getEncapsulatedChar()));
                 truncated[i] = text[i];
 
             }
 
         } else {
 
-            logger.debug("Setting text to output");
+            //logger.debug("Setting text to output");
             for(int i = 0; i <4; i++) {
 
                 if(4-i <= text.length) {
