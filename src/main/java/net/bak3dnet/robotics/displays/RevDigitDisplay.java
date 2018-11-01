@@ -293,8 +293,8 @@ public class RevDigitDisplay {
 
         for(int i = 0; i < truncated.length; i ++) {
 
-            sendData.add(new Byte(truncated[i].getBinary()[0]));
-            sendData.add(new Byte(truncated[i].getBinary()[1]));
+            sendData.add(new Byte(truncated[3-i].getBinary()[0]));
+            sendData.add(new Byte(truncated[3-i].getBinary()[1]));
 
         }
 
