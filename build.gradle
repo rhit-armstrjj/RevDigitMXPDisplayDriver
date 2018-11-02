@@ -18,14 +18,11 @@ plugins {
     id 'maven-publish'
 }
 
-version = '1.0.0'
+version = '1.1.0'
 group = 'robotics'
 
 dependencies {
     api wpilib()
-
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
@@ -47,7 +44,7 @@ task javadocJar(type: Jar, dependsOn:javadoc) {
 }
 
 artifacts {
-    archives javadocJar
+    //archives javadocJar
 }
 
 bintray {
@@ -69,9 +66,9 @@ bintray {
 
         version {
 
-            name = '1.0-dev'
-            desc = 'Developmental version for the display drivers'
-            vcsTag = '1.0.0'
+            name = '1.1.0-Final'
+            desc = 'First official releas for display drivers'
+            vcsTag = '1.1.0'
 
         }
 
