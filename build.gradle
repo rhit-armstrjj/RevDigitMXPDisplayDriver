@@ -44,7 +44,7 @@ task javadocJar(type: Jar, dependsOn:javadoc) {
 }
 
 artifacts {
-    //archives javadocJar
+    archives javadocJar
 }
 
 bintray {

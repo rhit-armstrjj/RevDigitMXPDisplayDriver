@@ -326,4 +326,60 @@ public class RevDigitDisplay {
 
     }
 
+    /**
+     * Sets the brightness of the display
+     * 
+     * @param fraction The number to be divided by 16 to set the brightness, any number over 16 will be set to 16, and any under 1 will be 1.
+     * 
+     */
+    public void setBrightness(int fraction) {
+
+        if(fraction < 1) {
+
+            fraction = 1;
+
+        } else if (fraction >16) {
+        
+            fraction = 16;
+        
+        }
+
+        fraction--;
+
+        byte[] outData = {(byte) fraction};
+        outData[0] += 224;
+
+        i2c.writeBulk(outData);
+
+    }
+
+    /**
+     * Sets the blinking on the display
+     * 
+     * @param hzLevel The number, 1 - 3 to set the blinking. 1 is of 1/2 hz, 2 is for 1 hz, 3 is for 2 hz. All other numbers will be truncated appropriately.
+     */
+    public void setBlinking(int hzLevel) {
+
+        byte[] outData = {(byte)0x81};
+
+        switch(hzLevel) {
+
+            case 1: outData[0] +=6;
+                    break;
+            
+            case 2: outData[0] += 4;
+                    break;
+            
+            case 3: outData[0] += 2;
+                    break;
+
+            default: outData[0] +=0;
+
+
+        }
+
+        i2c.writeBulk(outData);
+
+    }
+
 }
