@@ -44,8 +44,8 @@ public class TickerTapeModule implements DisplayModuleBase {
 
         sumDeltaTime += deltaTime;
 
-        if(sumDeltaTime >= (charPassRate/60)*1000) {
-
+        if(sumDeltaTime >= ((charPassRate*display.potentiometer.get())/60D)*1000D) {
+            //System.out.println(display.potentiometer.get());
             display.setText(getCurrentDChars());
             sumDeltaTime = 0;
 

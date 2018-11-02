@@ -22,7 +22,7 @@ public class DCharFactory {
         Map<Character,byte[]> aMap = new HashMap<Character,byte[]>();
 
         //This is the only way I currently understand how to set the matrix
-        byte[] char0 = {(byte) 0b00111111,(byte)0b00001100};
+        byte[] char0 = {(byte) 0b00111111,(byte)0b00000110};
         aMap.put('0', char0);
 
         byte[] char1 = {(byte) 0b00000110,(byte)0b00000000};
@@ -132,6 +132,9 @@ public class DCharFactory {
 
         byte[] charSpace = {(byte) 0b00000000,(byte)0b00000000};
         aMap.put(' ', charSpace);
+
+        byte[] charDash = {(byte) 0b11000000,(byte)0b00000000};
+        aMap.put('-', charDash);
 
         byte[] fullDisplay = {(byte)0b11111111, (byte)0b11111111};
         aMap.put('&', fullDisplay);

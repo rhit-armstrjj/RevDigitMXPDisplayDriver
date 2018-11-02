@@ -260,29 +260,15 @@ public class RevDigitDisplay {
         DChar[] truncated = new DChar[4];
         Arrays.fill(truncated,DCharFactory.getDChar(' '));
 
-        if(text.length>4) {
+        for(int i =0; i <4;i++) {
 
-            for(int i =0; i <4;i++) {
-
-                //logger.debug("Setting index {} to {}", Integer.toString(i),Character.toString(text[i].getEncapsulatedChar()));
+            //logger.debug("Setting index {} to {}", Integer.toString(i),Character.toString(text[i].getEncapsulatedChar()));
+            try {
                 truncated[i] = text[i];
-
-            }
-
-        } else {
-
-            //logger.debug("Setting text to output");
-            for(int i = 0; i <4; i++) {
-
-                if(4-i <= text.length) {
-
-                    truncated[i] = text[i];
-
-                }
-
-            }
+            } catch (ArrayIndexOutOfBoundsException e) {}
 
         }
+
 
         //byte[] preSend =  {(byte)0b00001111,(byte)0b00001111}; 
 
