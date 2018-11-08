@@ -19,7 +19,7 @@ public class TickerTapeModule implements DisplayModuleBase {
     /**
      * Characters per minute
      */
-    protected double charPassRate;
+    protected double charPassConst;
 
     protected int sumDeltaTime;
     protected int currentPosition = 0;
@@ -35,7 +35,7 @@ public class TickerTapeModule implements DisplayModuleBase {
 
         Arrays.fill(outDString, DCharFactory.getDChar(' ', false));
 
-        this.charPassRate = 50;
+        this.charPassConst = 50;
 
     }
     
@@ -44,7 +44,7 @@ public class TickerTapeModule implements DisplayModuleBase {
 
         sumDeltaTime += deltaTime;
 
-        if(sumDeltaTime >= ((charPassRate*display.potentiometer.get())/60D)*1000D) {
+        if(sumDeltaTime >= ((charPassConst*22*display.potentiometer.get())/60D)*1000D) {
             //System.out.println(display.potentiometer.get());
             display.setText(getCurrentDChars());
             sumDeltaTime = 0;
@@ -402,8 +402,11 @@ public class TickerTapeModule implements DisplayModuleBase {
         outDString[2] = outDString[3];
 
         try {
-            
-            outDString[3] = displayBuffer[currentPosition];
+            if(displayBuffer!=null){
+                outDString[3] = displayBuffer[currentPosition];
+            } else {
+                outDString[3] = DCharFactory.getDChar(' ');
+            }
 
         } catch(IndexOutOfBoundsException e) {
             currentPosition = 0;
@@ -442,7 +445,7 @@ public class TickerTapeModule implements DisplayModuleBase {
      * @param charPassRate the charPassRate to set
      */
     public void setCharPassRate(double charPassRate) {
-        this.charPassRate = charPassRate;
+        this.charPassConst = charPassRate;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class DCharFactory {
         Map<Character,byte[]> aMap = new HashMap<Character,byte[]>();
 
         //This is the only way I currently understand how to set the matrix
-        byte[] char0 = {(byte) 0b00111111,(byte)0b00000110};
+        byte[] char0 = {(byte) 0b00111111,(byte)0b00100100};
         aMap.put('0', char0);
 
         byte[] char1 = {(byte) 0b00000110,(byte)0b00000000};
@@ -49,7 +49,7 @@ public class DCharFactory {
         byte[] char8 = {(byte) 0b11111111,(byte)0b00000000};
         aMap.put('8', char8);
 
-        byte[] char9 = {(byte) 0b00100111,(byte)0b00000000};
+        byte[] char9 = {(byte) 0b11100111,(byte)0b00000000};
         aMap.put('9', char9);
 
         byte[] charA = {(byte) 0b11110111,(byte)0b00000000};
@@ -70,7 +70,7 @@ public class DCharFactory {
         byte[] charF = {(byte) 0b11110001,(byte)0b00000000};
         aMap.put('F', charF);
 
-        byte[] charG = {(byte) 0b11111001,(byte)0b00000000};
+        byte[] charG = {(byte) 0b11111001,(byte)0b00010000};
         aMap.put('G', charG);
 
         byte[] charH = {(byte) 0b11110110,(byte)0b00000000};
@@ -82,16 +82,16 @@ public class DCharFactory {
         byte[] charJ = {(byte) 0b00011001,(byte)0b00010010};
         aMap.put('J', charJ);
 
-        byte[] charK = {(byte) 0b01110000,(byte)0b00100100};
+        byte[] charK = {(byte) 0b01110000,(byte)0b00001100};
         aMap.put('K', charK);
 
         byte[] charL = {(byte) 0b00111000,(byte)0b00000000};
         aMap.put('L', charL);
 
-        byte[] charM = {(byte) 0b00110111,(byte)0b00000000};
+        byte[] charM = {(byte) 0b00110111,(byte)0b00000010};
         aMap.put('M', charM);
 
-        byte[] charN = {(byte) 0b00110000,(byte)0b00010011};
+        byte[] charN = {(byte) 0b00110110,(byte)0b00001001};
         aMap.put('N', charN);
 
         byte[] charO = {(byte) 0b00111111,(byte)0b00000000};
@@ -100,10 +100,10 @@ public class DCharFactory {
         byte[] charP = {(byte) 0b11110011,(byte)0b00000000};
         aMap.put('P', charP);
 
-        byte[] charQ = {(byte) 0b00111111,(byte)0b00100000};
+        byte[] charQ = {(byte) 0b00111111,(byte)0b00001000};
         aMap.put('Q', charQ);
 
-        byte[] charR = {(byte) 0b11110011,(byte)0b00100000};
+        byte[] charR = {(byte) 0b11110011,(byte)0b00001000};
         aMap.put('R', charR);
 
         byte[] charS = {(byte) 0b00001001,(byte)0b00100001};
@@ -118,7 +118,7 @@ public class DCharFactory {
         byte[] charV = {(byte) 0b00000000,(byte)0b00000101};
         aMap.put('V', charV);
 
-        byte[] charW = {(byte) 0b00110011,(byte)0b00111010};
+        byte[] charW = {(byte) 0b00110110,(byte)0b00111010};
         aMap.put('W', charW);
 
         byte[] charX = {(byte) 0b00000000,(byte)0b00111111};

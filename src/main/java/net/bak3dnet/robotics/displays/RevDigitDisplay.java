@@ -187,10 +187,10 @@ public class RevDigitDisplay {
 
     private RevDigitDisplay() {
 
-        buttonA = new DigitalInput(19);
-        buttonB = new DigitalInput(20);
+        buttonA = new DigitalInput(9);
+        buttonB = new DigitalInput(10);
 
-        potentiometer = new AnalogPotentiometer(4);
+        potentiometer = new AnalogPotentiometer(3);
 
         i2c = new I2C(Port.kMXP,0x70);
         
@@ -291,7 +291,7 @@ public class RevDigitDisplay {
             finalData[i] = sendData.get(i);
 
         }
-
+        
         i2c.writeBulk(finalData);
         Timer.delay(0.01);
 
