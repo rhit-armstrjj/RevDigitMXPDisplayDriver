@@ -6,9 +6,6 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C.Port;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +84,7 @@ public class RevDigitDisplay {
 
                 short deltaTime = (short)(currentTime - previousTime);
 
-                display.getActiveModule().task(this.display,deltaTime);
+                display.getActiveModule().task(display,deltaTime);
 
                 previousTime = currentTime;
 
